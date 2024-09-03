@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>{% block title %}{{ title }} - My Site{% endblock %}</title>
+  {% block head %}{% endblock %}
+</head>
+
+<body>
+  <div id="content" style="display: flex; justify-content: center; align-items: center;
+    flex-direction: column;">
+    {% block content %}<p>Placeholder content</p>{% endblock %}
+  </div>
+</body>
+
+</html>
