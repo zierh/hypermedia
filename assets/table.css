@@ -1,0 +1,42 @@
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  margin: 2em 0 0.75em 0;
+}
+
+table td,
+table th {
+  padding: 5px 4px;
+}
+
+table tbody td {
+  font-size: 13px;
+}
+
+/* table tr:nth-child(even) { */
+/*   background: #D4D4D4; */
+/* } */
+
+table tr:last-child {
+  border-bottom: 1px solid #000000;
+}
+
+table thead {
+  /* background: #CFCFCF; */
+  border-bottom: 1px solid #000000;
+}
+
+table thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #000000;
+  text-align: left;
+}
+
+table tfoot {
+  font-size: 13px;
+  font-weight: normal;
+  color: #000000;
+  border-top: 1px solid #000000;
+}

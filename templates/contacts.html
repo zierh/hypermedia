@@ -1,22 +1,33 @@
 {% extends "base.html" %}
 
+{% block head %}
+<link rel="stylesheet" href="./assets/table.css">
+{% endblock %}
+
 {% block title %}Contacts{% endblock %}
 
+{% if q.len() > 0 %}
+{% let search = q %}
+{% else %}
+{% let search = "" %}
+{% endif %}
+
 {% block content %}
+
 <form action="/contacts" method="get" class="tool-bar">
   <label for="search">Search</label>
-  <input id="search" type="search" name="q" value="" />
+  <input id="search" type="search" name="q" value="{{ q|display_some }}" />
   <input type="submit" value="Search" />
 </form>
 
 <table>
   <thead>
     <tr>
-      <th>First
-      <th>Last
-      <th>Phone
-      <th>Email
-        <th />
+      <th>First</th>
+      <th>Last</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th />
     </tr>
   </thead>
   <tbody>
@@ -26,11 +37,16 @@
       <td>{{ contact.last_name }}</td>
       <td>{{ contact.phone }}</td>
       <td>{{ contact.mail }}</td>
-      <td><a href="/contacts/{{ contact.id }}/edit">Edit</a>
+      <td>
+        <a href="/contacts/{{ contact.id }}/edit">Edit</a>
         <a href="/contacts/{{ contact.id }}">View</a>
       </td>
     </tr>
     {% endfor %}
   </tbody>
 </table>
+
+<p>
+  <a href="/contacts/new">Add Contact</a>
+</p>
 {% endblock %}

@@ -1,0 +1,20 @@
+body {
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  font-family: Arial, sans-serif;
+}
+
+#content {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+p {
+  margin: 0;
+  align-self: start;
+}

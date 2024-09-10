@@ -2,14 +2,27 @@ use askama::Template;
 
 use crate::contact::Contact;
 
+mod filters {
+    pub fn display_some<T>(value: &Option<T>) -> askama::Result<String>
+    where
+        T: std::fmt::Display,
+    {
+        Ok(match value {
+            Some(value) => value.to_string(),
+            None => String::new(),
+        })
+    }
+}
+
 #[derive(Template)]
 #[template(path = "hello.html")]
 pub struct HelloWorld<'a> {
-    name: &'a str,
+    pub name: &'a str,
 }
 
 #[derive(Template)]
 #[template(path = "contacts.html")]
-pub struct ContactList {
+pub struct ContactsView<'a> {
     pub list: Vec<Contact>,
+    pub q: Option<&'a str>,
 }

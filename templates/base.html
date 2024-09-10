@@ -1,15 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
   <title>{% block title %}{{ title }} - My Site{% endblock %}</title>
+  <link rel="stylesheet" href="./assets/style.css">
   {% block head %}{% endblock %}
 </head>
 
 <body>
-  <div id="content" style="display: flex; justify-content: center; align-items: center;
-    flex-direction: column;">
-    {% block content %}<p>Placeholder content</p>{% endblock %}
+  <div style="width: 100%">
+    <div id="content">
+      <h1>CONTACTS.APP</h1>
+      {% block content %}
+      <p>Placeholder content</p>
+      {% endblock %}
+    </div>
   </div>
 </body>
 
