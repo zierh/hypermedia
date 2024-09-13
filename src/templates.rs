@@ -1,6 +1,6 @@
 use askama::Template;
 
-use crate::contact::Contact;
+use crate::{contact::Contact, routes::add_contact::AddContact};
 
 mod filters {
     pub fn display_some<T>(value: &Option<T>) -> askama::Result<String>
@@ -21,8 +21,21 @@ pub struct HelloWorld<'a> {
 }
 
 #[derive(Template)]
+#[template(path = "base.html")]
+pub struct Base<'a> {
+    pub title: &'a str,
+}
+
+#[derive(Template)]
 #[template(path = "contacts.html")]
 pub struct ContactsView<'a> {
     pub list: Vec<Contact>,
     pub q: Option<&'a str>,
+}
+
+#[derive(Template)]
+#[template(path = "new.html")]
+pub struct CreateContact {
+    pub new_contact: AddContact,
+    pub errors: Vec<String>, // TODO proper Errors
 }

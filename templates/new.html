@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block title %}New Contact{% endblock %}
+
 {% block content %}
 
 <form action="/contacts/new" method="post">
@@ -7,28 +9,28 @@
     <legend>Contact Values</legend>
     <p>
       <label for="email">Email</label>
-      <input name="email" id="email" type="email" placeholder="Email" value="{{ contact.email or '' }}">
-      <span class="error">
-        {{ contact.errors['email'] }}
-      </span>
+      <input name="email" id="email" type="email" placeholder="Email" value="{{ new_contact.email|display_some }}">
+      <!-- <span class="error"> {{ errors.0 }} </span> -->
     </p>
     <p>
       <label for="first_name">First Name</label>
-      <input name="first_name" id="first_name" type="text" placeholder="First Name" value="{{ contact.first or '' }}">
-      <span class="error">{{ contact.errors['first'] }}</span>
+      <input name="first_name" id="first_name" type="text" placeholder="First Name"
+        value="{{ new_contact.first|display_some }}">
+      <!-- <span class="error">{{ errors.1 }}</span> -->
     </p>
     <p>
       <label for="last_name">Last Name</label>
-      <input name="last_name" id="last_name" type="text" placeholder="Last Name" value="{{ contact.last or '' }}">
-      <span class="error">{{ contact.errors['last'] }}</span>
+      <input name="last_name" id="last_name" type="text" placeholder="Last Name"
+        value="{{ new_contact.last|display_some }}">
+      <!-- <span class="error">{{ errors.2 }}</span> -->
     </p>
     <p>
       <label for="phone">Phone</label>
-      <input name="phone" id="phone" type="text" placeholder="Phone" value="{{ contact.phone or '' }}">
-      <span class="error">{{ contact.errors['phone'] }}</span>
+      <input name="phone" id="phone" type="text" placeholder="Phone" value="{{ new_contact.phone|display_some }}">
+      <!-- <span class="error">{{ errors.3 }}</span> -->
     </p>
     <button>Save</button>
-  </fieldset>
+  </fieldset>String
 </form>
 
 <p>

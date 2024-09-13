@@ -23,14 +23,14 @@ pub async fn contact_list(search_term: Option<Query<Search>>) -> impl IntoRespon
         id: "1".to_string(),
         first_name: "Hannes".to_string(),
         last_name: "Zierh".to_string(),
-        mail: "hannes.ziereis@gmail.com".to_string(),
+        email: "hannes.ziereis@gmail.com".to_string(),
         phone: "01602834531".to_string(),
     };
     let contact_1 = Contact {
         id: "2".to_string(),
         first_name: "Markus".to_string(),
         last_name: "Söder".to_string(),
-        mail: "gott.koenig69@doener.bayern".to_string(),
+        email: "gott.koenig69@doener.bayern".to_string(),
         phone: "123456789".to_string(),
     };
     let contacts = vec![contact_0, contact_1];

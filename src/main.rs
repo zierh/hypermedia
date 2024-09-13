@@ -8,7 +8,7 @@ use askama_axum::IntoResponse;
 use axum::{
     http::StatusCode, response::{Html, Redirect}, routing::get, Router
 };
-use routes::contacts::contact_list;
+use routes::{add_contact, contacts::contact_list};
 use serde::Deserialize;
 use templates::HelloWorld;
 use tower_http::services::ServeDir;
@@ -20,6 +20,7 @@ async fn main() {
     let app = Router::new()
         .route("/", get(|| async { Redirect::permanent("/contacts") }))
         .merge(contacts::get_route())
+        .merge(add_contact::get_route())
         // .route("/contacts", get(contact_list))
         .route("/hi", get(handler))
         .nest_service("/assets", ServeDir::new("assets"));
