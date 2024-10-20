@@ -1,9 +1,10 @@
-use askama_axum::IntoResponse;
-use axum::{extract::Query, http::StatusCode, response::Html, routing::{get, Route}, Router};
 use askama::Template;
+use askama_axum::IntoResponse;
+use axum::{extract::Query, http::StatusCode, response::Html, routing::get, Router};
+use hypermedia::{data::Contact, persistence::load_contacts};
 use serde::Deserialize;
 
-use crate::{contact::Contact, templates::ContactsView};
+use crate::templates::ContactsView;
 
 #[derive(Deserialize, Debug, Clone)]
 pub struct Search {
@@ -11,47 +12,26 @@ pub struct Search {
 }
 
 pub fn get_route() -> Router {
-    Router::new()
-        .route("/contacts", get(contact_list))
+    Router::new().route("/contacts", get(contact_list))
 }
 
+#[allow(unused_assignments)]
 pub async fn contact_list(search_term: Option<Query<Search>>) -> impl IntoResponse {
-    // let Query(search_term) = search_term.unwrap();
-    println!("search_term: {:?}", &search_term);
-
-    let contact_0: Contact = Contact {
-        id: "1".to_string(),
-        first_name: "Hannes".to_string(),
-        last_name: "Zierh".to_string(),
-        email: "hannes.ziereis@gmail.com".to_string(),
-        phone: "01602834531".to_string(),
-    };
-    let contact_1 = Contact {
-        id: "2".to_string(),
-        first_name: "Markus".to_string(),
-        last_name: "Söder".to_string(),
-        email: "gott.koenig69@doener.bayern".to_string(),
-        phone: "123456789".to_string(),
-    };
-    let contacts = vec![contact_0, contact_1];
-
-    #[allow(unused_assignments)]
     let mut result: Vec<Contact> = vec![];
 
     let search_option = &search_term.clone().map(|s| s.q.clone());
+    let app_data = load_contacts();
 
     if let Some(search_term) = &search_term {
         // search in contacts
         let q = &search_term.q.to_lowercase();
-        result = contacts
+        result = app_data
             .into_iter()
-            .filter(|c| {
-                c.first_name.to_lowercase().contains(q) || c.last_name.to_lowercase().contains(q)
-            })
+            .filter(|c| c.first.to_lowercase().contains(q) || c.last.to_lowercase().contains(q))
             .collect();
         println!("Results: {:?}", &result)
     } else {
-        result = contacts;
+        result = app_data;
     }
 
     let template = ContactsView {
@@ -61,4 +41,3 @@ pub async fn contact_list(search_term: Option<Query<Search>>) -> impl IntoRespon
     let reply = template.render().unwrap();
     (StatusCode::OK, Html(reply).into_response())
 }
-

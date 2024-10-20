@@ -1,6 +1,7 @@
 use askama::Template;
+use hypermedia::data::Contact;
 
-use crate::{contact::Contact, routes::add_contact::AddContact};
+use crate::routes::add_contact::{AddContact, AddContactErrors};
 
 mod filters {
     pub fn display_some<T>(value: &Option<T>) -> askama::Result<String>
@@ -37,5 +38,5 @@ pub struct ContactsView<'a> {
 #[template(path = "new.html")]
 pub struct CreateContact {
     pub new_contact: AddContact,
-    pub errors: Vec<String>, // TODO proper Errors
+    pub errors: AddContactErrors,
 }

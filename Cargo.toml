@@ -7,8 +7,14 @@ edition = "2021"
 askama = { version = "0.12.1", features = ["with-axum"] }
 askama_axum = "0.4.0"
 axum = { version = "0.7.5", features = ["query"] }
+axum-messages = "0.7.0"
+email_address = "0.2.9"
 lazy_static = "1.5.0"
 rand = "0.8.5"
-serde = { version = "1.0.209", features = ["derive"] }
+rkyv = { version = "0.8.1", features = ["uuid-1"] }
+serde = { version = "1.0.210", features = ["derive"] }
+thiserror = "1.0.63"
 tokio = { version = "1.40.0", features = ["full"] }
 tower-http = { version = "0.5.2", features = ["fs"] }
+tower-sessions = "0.13.0"
+uuid = { version = "1.10.0", features = ["v4", "fast-rng", "macro-diagnostics"] }

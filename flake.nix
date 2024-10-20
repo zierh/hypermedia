@@ -58,13 +58,6 @@
           rust-analyzer-unwrapped
           cargo
           cargo-watch
-          # pkg-config
-          # openssl
-          # nodejs_22
-          nodePackages.pnpm
-          nodePackages_latest.parcel
-          (yarn.override {nodejs = nodejs_20;})
-          typescript
         ];
         RUST_SRC_PATH = "${
           rustToolchain.${pkgs.system}.rust-src

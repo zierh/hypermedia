@@ -1,19 +1,20 @@
-mod contact;
-mod templates;
 mod routes;
+mod templates;
 
 use crate::routes::contacts;
 
+use askama::Template;
 use askama_axum::IntoResponse;
 use axum::{
-    http::StatusCode, response::{Html, Redirect}, routing::get, Router
+    http::StatusCode,
+    response::{Html, Redirect},
+    routing::get,
+    Router,
 };
-use routes::{add_contact, contacts::contact_list};
-use serde::Deserialize;
+use routes::add_contact;
+use std::net::SocketAddr;
 use templates::HelloWorld;
 use tower_http::services::ServeDir;
-use std::net::SocketAddr;
-use askama::Template;
 
 #[tokio::main]
 async fn main() {

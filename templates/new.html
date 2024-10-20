@@ -8,32 +8,32 @@
   <fieldset>
     <legend>Contact Values</legend>
     <p>
-      <label for="email">Email</label>
-      <input name="email" id="email" type="email" placeholder="Email" value="{{ new_contact.email|display_some }}">
-      <!-- <span class="error"> {{ errors.0 }} </span> -->
-    </p>
-    <p>
       <label for="first_name">First Name</label>
-      <input name="first_name" id="first_name" type="text" placeholder="First Name"
+      <input name="first" id="first_name" type="text" placeholder="First Name"
         value="{{ new_contact.first|display_some }}">
-      <!-- <span class="error">{{ errors.1 }}</span> -->
+      <span class="error"> {{ errors.first|display_some }} </span>
     </p>
     <p>
       <label for="last_name">Last Name</label>
-      <input name="last_name" id="last_name" type="text" placeholder="Last Name"
-        value="{{ new_contact.last|display_some }}">
-      <!-- <span class="error">{{ errors.2 }}</span> -->
+      <input name="last" id="last_name" type="text" placeholder="Last Name" value="{{ new_contact.last|display_some }}">
+      <span class="error"> {{ errors.last|display_some }} </span>
+    </p>
+    <p>
+      <label for="email">Email</label>
+      <input name="email" id="email" type="email" placeholder="Email" value="{{ new_contact.email|display_some }}">
+      <span class="error"> {{ errors.email|display_some }} </span>
     </p>
     <p>
       <label for="phone">Phone</label>
       <input name="phone" id="phone" type="text" placeholder="Phone" value="{{ new_contact.phone|display_some }}">
-      <!-- <span class="error">{{ errors.3 }}</span> -->
+      <span class="error"> {{ errors.phone|display_some }} </span>
     </p>
     <button>Save</button>
-  </fieldset>String
+  </fieldset>
 </form>
 
 <p>
   <a href="/contacts">Back</a>
 </p>
+
 {% endblock %}
