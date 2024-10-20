@@ -86,20 +86,20 @@ async fn new_contact(new_contact: Form<AddContact>) -> impl IntoResponse {
     };
 
     if !EmailAddress::is_valid(&contact.email) || &contact.phone == "1" {
-        let r = new_contact_page(Some(State(NewContact {
-            0: AddContact {
+        let r = new_contact_page(Some(State(NewContact(
+            AddContact {
                 first: Some(contact.first),
                 last: Some(contact.last),
                 phone: Some(contact.phone),
                 email: Some(contact.email),
             },
-            1: AddContactErrors {
+            AddContactErrors {
                 first: None,
                 last: None,
                 phone: None,
                 email: Some("Invalid MAIL".to_string()),
             },
-        })))
+        ))))
         .await
         .into_response();
 
