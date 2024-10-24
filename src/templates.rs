@@ -40,3 +40,9 @@ pub struct CreateContact {
     pub new_contact: AddContact,
     pub errors: AddContactErrors,
 }
+
+#[derive(Template)]
+#[template(path = "view.html")]
+pub struct ViewContact {
+    pub contact: Contact,
+}
