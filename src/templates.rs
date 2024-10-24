@@ -1,8 +1,7 @@
 use askama::Template;
-use hypermedia::{
-    data::Contact,
-    route_data::add_contact::{AddContact, AddContactErrors},
-};
+use hypermedia::data::Contact;
+
+use crate::routes::add_contact_types::{AddContact, AddContactErrors};
 
 mod filters {
     pub fn display_some<T>(value: &Option<T>) -> askama::Result<String>

@@ -9,14 +9,12 @@ use axum::{
     Form, Router,
 };
 use axum_macros::debug_handler;
-use hypermedia::{
-    data::Contact,
-    persistence::save_contact,
-    route_data::add_contact::{AddContact, AddContactErrors, NewContact},
-};
+use hypermedia::{data::Contact, persistence::save_contact};
 use uuid::Uuid;
 
-use crate::templates::CreateContact;
+use crate::{routes::add_contact_types::AddContact, templates::CreateContact};
+
+use super::add_contact_types::{AddContactErrors, NewContact};
 
 pub fn get_route() -> Router {
     Router::new()
@@ -94,7 +92,6 @@ async fn new_contact_page(state: Option<State<NewContact>>) -> Html<String> {
     }
 
     let reply = template.render().unwrap();
-    // (StatusCode::OK, Html(reply))
 
     Html(reply)
 }
